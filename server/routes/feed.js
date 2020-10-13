@@ -6,8 +6,13 @@ const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
+router.get('/status', isAuth, feedController.getUserStatus);
 router.get('/posts', isAuth, feedController.getPosts);
 router.get('/post/:postId', isAuth, feedController.getPostById);
+router.put('/status', isAuth,
+    body('status', 'Invalid entry')
+        .notEmpty(),
+    feedController.updateUserStatus);
 router.post('/post', isAuth, [
     body('title', 'Wrong title')
         .isString()

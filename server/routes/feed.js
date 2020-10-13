@@ -16,7 +16,7 @@ router.put('/status', isAuth,
 router.post('/post', isAuth, [
     body('title', 'Wrong title')
         .isString()
-        .isLength({ min: 5 })
+        .isLength({ min: 7 })
         .trim(),
     body('content', 'Wrong content')
         .isString()

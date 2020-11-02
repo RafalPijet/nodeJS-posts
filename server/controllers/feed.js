@@ -9,9 +9,9 @@ const clearImage = filePath => {
     filePath = path.join(__dirname, '../', filePath);
     fs.unlink(filePath, err => {
 
-        if (err) console.log(err)
+        if (err) console.log(err);
     });
-}
+};
 
 exports.getUserStatus = async (req, res, next) => {
 
@@ -31,7 +31,7 @@ exports.getUserStatus = async (req, res, next) => {
         }
         next(err);
     }
-}
+};
 
 exports.updateUserStatus = async (req, res, next) => {
     const { status } = req.body;
@@ -42,7 +42,7 @@ exports.updateUserStatus = async (req, res, next) => {
         if (errors.array().length) {
             const error = new Error(`Validation error: ${errors.array()[0].msg}`);
             error.statusCode = 401;
-            throw error
+            throw error;
         }
         const user = await User.findById(req.userId);
 
@@ -53,7 +53,7 @@ exports.updateUserStatus = async (req, res, next) => {
         }
         user.status = status;
         await user.save();
-        res.status(200).json({ status: user.status })
+        res.status(200).json({ status: user.status });
     } catch (err) {
 
         if (!err.statusCode) {

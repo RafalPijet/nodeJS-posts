@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
         throw error;
     }
     const token = authHeader.split(' ')[1];
-    let decodedToken;
+    let decodedToken = null;
 
     try {
         decodedToken = jsonwebtoken.verify(token, process.env.PRIVATE_KEY);
